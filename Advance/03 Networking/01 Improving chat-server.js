@@ -20,4 +20,12 @@ socket.on('data', data => {(
     Object.entries(...)
     
     
-  
+//let's also dipslay timestamp
+  function timestamp() {
+      const now = new Date();
+      return `${now.getHours()}  :  ${now.getMinutes()}`;
+    }
+//for serious timestamp handling, use a lightweight library called 'moment'
+                            
+                             
+                    
