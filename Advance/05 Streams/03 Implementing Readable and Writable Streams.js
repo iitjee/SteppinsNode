@@ -23,8 +23,8 @@ our outStream.*/
 //When we run this file, anything we type into process.stdin will be echoed back using the outStream console.log line
 
 
-This is not a very useful stream to implement, because it's already implemented and built in. This is very much equivalent to 
-process.stdout. We can just pipe stdin into stdout and we'll get the exact same echo feature with just that line.
+// This is not a very useful stream to implement, because it's already implemented and built in. This is very much equivalent to 
+// process.stdout. We can just pipe stdin into stdout and we'll get the exact same echo feature with just that line.
   process.stdin.pipe(process.stdout);
 
 
@@ -37,9 +37,9 @@ process.stdout. We can just pipe stdin into stdout and we'll get the exact same 
     
     inStream.pipe(process.stdout);
     
-When we run this file, we're reading the data from this inStream and echoing it to standard out. Very simple, but also not 
-very efficient. We're basically pushing all our data to the stream before piping it to process.stdout. The better way here is 
-to push data on demand, when a consumer asks for it. We can do that by implementing the read method on the readable stream. 
+// When we run this file, we're reading the data from this inStream and echoing it to standard out. Very simple, but also not 
+// very efficient. We're basically pushing all our data to the stream before piping it to process.stdout. The better way here is 
+// to push data on demand, when a consumer asks for it. We can do that by implementing the read method on the readable stream. 
     const inStream = new Readable({
       read(size) { //When the read method is called on a readable stream, the implementation can push partial data to the 
       //queue. 
@@ -62,10 +62,10 @@ inStream.pipe(stdout);
           }, 100);
         });
         
- If we execute this code, the stream will stream characters every 100 ms, and we'll get an error here, because we basically 
- created a race condition where one timer will push null and another timer will try to push data after that. To fix that we 
- can simply move this if statement to above the push data line, and just return from it if we hit the max condition. This 
- should fix our problem.
+//  If we execute this code, the stream will stream characters every 100 ms, and we'll get an error here, because we basically 
+//  created a race condition where one timer will push null and another timer will try to push data after that. To fix that we 
+//  can simply move this if statement to above the push data line, and just return from it if we hit the max condition. This 
+//  should fix our problem.
       const inStream = new Readable({
           read(size) {
             setTimeout(() => {
@@ -76,19 +76,20 @@ inStream.pipe(stdout);
           }, 100);
         });
         
- Let's now register a process on exit event, and in there let's write to the error console the current character code that we 
- have in our inStream.
+//  Let's now register a process on exit event, and in there let's write to the error console the current character code that we 
+//  have in our inStream.
     process.on('exit', () => {
       `\n\n Current Char Code is ${inStream.currentCharCode}`
     );
     
- What I want to do now is to read only three characters from our inStream and make sure that not all the 
- data gets buffered.
+//  What I want to do now is to read only three characters from our inStream and make sure that not all the 
+//  data gets buffered.
   $node thisfile.js | head -c3
    
- head command will cause the node process to exit and we'll see our currentCharCode value, which is only at 69, which is D. So 
- data is only pushed to this readable stream on demand here. The head command causes this error on the standard out, which 
- goes unhandled and forces the process to exit, but we can suppress this error message by officially registering a handler for 
- the error event on stdout and just call process.exit in there. This will make our script return the three characters cleanly.
-//at end of file write
+//  head command will cause the node process to exit and we'll see our currentCharCode value, which is only at 69, which is D. So 
+//  data is only pushed to this readable stream on demand here. The head command causes this error on the standard out, which 
+//  goes unhandled and forces the process to exit, but we can suppress this error message by officially registering a handler for 
+//  the error event on stdout and just call process.exit in there. This will make our script return the three characters cleanly.
+
+   //at end of file write
    process.stdout.on('error', process.exit);
