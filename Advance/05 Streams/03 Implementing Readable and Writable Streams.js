@@ -1,5 +1,5 @@
-Let's implement a writable stream. We need to use the Writable constructor from the stream module. We can implement a writable 
-stream in many ways. We can extend this Writable constructor if we want, but I prefer the simpler constructor approach.
+// Let's implement a writable stream. We need to use the Writable constructor from the stream module. We can implement a writable 
+// stream in many ways. We can extend this Writable constructor if we want, but I prefer the simpler constructor approach.
 
 const {Writable } = require('stream');
 
@@ -85,7 +85,10 @@ inStream.pipe(stdout);
  What I want to do now is to read only three characters from our inStream and make sure that not all the 
  data gets buffered.
   $node thisfile.js | head -c3
+   
  head command will cause the node process to exit and we'll see our currentCharCode value, which is only at 69, which is D. So 
  data is only pushed to this readable stream on demand here. The head command causes this error on the standard out, which 
  goes unhandled and forces the process to exit, but we can suppress this error message by officially registering a handler for 
  the error event on stdout and just call process.exit in there. This will make our script return the three characters cleanly.
+//at end of file write
+   process.stdout.on('error', process.exit);
