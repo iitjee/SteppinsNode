@@ -1,4 +1,5 @@
- The fact that node runs in a single thread does not mean that we can't take advantage of multiple processes, and of course, 
+/* 
+The fact that node runs in a single thread does not mean that we can't take advantage of multiple processes, and of course, 
  multiple machines as well. Using multiple processes is the only way to scale a Node.js application. Node.js is designed for 
  building distributed applications with many nodes. This is why it's named Node.js. Scalability is baked into the platform and 
  it's not something you start thinking about later in the lifetime of an application.
@@ -18,7 +19,7 @@
  information first. Successfully scaling a big application should eventually implement all three strategies, and Node.js makes 
  it easy to do so. In the next few clips, we'll talk about the built-in tools available in Node.js to implement the cloning 
  strategy.
- 
+ */
  
  
  There are four different ways we can use to create a child process in Node.
