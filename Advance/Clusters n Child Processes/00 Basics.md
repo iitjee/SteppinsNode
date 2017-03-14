@@ -1,4 +1,4 @@
-/* 
+
 The fact that node runs in a single thread does not mean that we can't take advantage of multiple processes, and of course, 
  multiple machines as well. Using multiple processes is the only way to scale a Node.js application. Node.js is designed for 
  building distributed applications with many nodes. This is why it's named Node.js. Scalability is baked into the platform and 
@@ -26,7 +26,7 @@ The fact that node runs in a single thread does not mean that we can't take adva
  Successfully scaling a big application should eventually implement all three strategies, and Node.js makes 
  it easy to do so. In the next few clips, we'll talk about the built-in tools available in Node.js to implement the cloning 
  strategy.
- */
+
 
 
 We can easily spin a child process using the child_process node modules, and those child processes can easily communicate with 
@@ -44,6 +44,20 @@ presented to us using Node streams.
  
  The spawn method launches a command in a new process and we can use it to pass that command any arguments.
 
+ ```
+ const { spawn } = require('child-process');
+ const child = spawn('pwd');
+ 
+ child.on('exit', (code, signal) => {
+   console.log('child process exited with code: ${code} and signal: ${signal}`);
+ }  
+ ```
+  other events are 'disconnect', 'error', 'message' and 'close' (https://nodejs.org/api/child_process.html)
+
+
+ The disconnect event is triggered when the parent process manually calls the child.disconnect method. An error event is triggered if the process could not be spawned or killed. The message event is the most important one. It's triggered when the child process uses the process.send() method to send messages. This is how parent/child processes can communicate with each other. We will see examples of this in the upcoming clips. And finally, the close event is emitted when the stdio streams of a child process get closed. 
+
+
  Every child process gets the three standard stdio streams, which we can access using child.stdin, child.stdout, and child.stderr. When those streams get closed, the child process that was using them will trigger the close event. This close event is different than the exit event, because multiple child processes might share the same stdio streams, and a child process exiting does not mean the streams got closed.
  
  'close' event !== 'exit' event
@@ -53,6 +67,8 @@ presented to us using Node streams.
  is a writable one, which is the inverse of those types as found in a normal process. The events we can use for those streams 
  are the standard ones. Most importantly, on the readable streams we can listen to the data event, which will have the output 
  of the command or any error encountered while executing the command. 
+
+ 
  
  When we execute this script, the output of the pwd command gets printed and the child process exits with code 0, which means 
  no error occurred.
@@ -69,8 +85,11 @@ presented to us using Node streams.
  easiest way to consume it is using the pipe function. We pipe a readable stream into a writable stream. Since the top level 
  process stdin is a readable stream, we can pipe that into a child process stdin stream.
  ```
-       const { spawn } = require('child_process');
+       const { spawn } = require('child_process'); //(or) const spawn = require('child_process').spawn;
        const child = spawn('wc'); //word-count command
+       
+//The result of the spawn function is a ChildProcess instance, which implements Node.js EventEmitter API. This means we can 
+//register handlers for events on this child object directly.
 
        process.stdin.pipe(child.stdin); //piping toplevel stdin's data to child's stdin stream
 
