@@ -55,7 +55,9 @@ presented to us using Node streams.
   other events are 'disconnect', 'error', 'message' and 'close' (https://nodejs.org/api/child_process.html)
 
 
- The disconnect event is triggered when the parent process manually calls the child.disconnect method. An error event is triggered if the process could not be spawned or killed. The message event is the most important one. It's triggered when the child process uses the process.send() method to send messages. This is how parent/child processes can communicate with each other.
+ The disconnect event is triggered when the parent process manually calls the child.disconnect method. An error event is triggered if the process could not be spawned or killed. 
+ 
+ The message event is the most important one. It's triggered when the child process uses the process.send() method to send messages. This is how parent/child processes can communicate with each other.
  
  And finally, the close event is emitted when the stdio streams of a child process get closed. Every child process gets the three standard stdio streams, which we can access using child.stdin, child.stdout, and child.stderr.<b> When those streams get closed, the child process that was using them will trigger the close event. </b> This close event is different than the exit event, because multiple child processes might share the same stdio streams, and a child process exiting does not mean the streams got closed.
  
