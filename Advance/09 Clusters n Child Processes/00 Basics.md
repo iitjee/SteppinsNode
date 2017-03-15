@@ -55,7 +55,9 @@ presented to us using Node streams.
   other events are 'disconnect', 'error', 'message' and 'close' (https://nodejs.org/api/child_process.html)
 
 
- The disconnect event is triggered when the parent process manually calls the child.disconnect method. An error event is triggered if the process could not be spawned or killed. 
+ The disconnect event is triggered when the parent process manually calls the child.disconnect method. An error event is 
+ triggered if the process could not be spawned or killed. After disconnecting it is no longer possible to send or receive 
+ messages, and the child.connected property is false.
  
  The message event is the most important one. It's triggered when the child process uses the process.send() method to send messages. This is how parent/child processes can communicate with each other.
  
@@ -68,6 +70,18 @@ presented to us using Node streams.
  is a writable one, which is the inverse of those types as found in a normal process. The events we can use for those streams 
  are the standard ones. Most importantly, on the readable streams we can listen to the data event, which will have the output 
  of the command or any error encountered while executing the command. 
+```
+  child.on('exit', (code, signal) => {..});
+  child.on('close', (code, signal) => {..});
+  child.on('error', (error) => {..});
+  child.on('disconnect', () => {..});
+  child.on('messasge', (message, sendHandle) => {...}); //sendHandle <Handle> a net.Socket or net.Server object, or undefined.
+
+  child.stdout.on('data', (data) => {...});
+  child.stderr.on('data', (data) => {..});
+  ...
+```
+
 
  
  
