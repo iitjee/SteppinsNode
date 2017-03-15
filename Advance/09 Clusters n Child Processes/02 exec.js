@@ -1,7 +1,8 @@
+/*
 By default, the spawn method does not create a shell to execute the command we passed into it, making it slightly more 
 efficient than the exec method, which does create a shell. The exec method has one other major difference. It buffers the 
 command's generated output and pass the whole value to a callback function. 
-
+*/
 Here's our previous example implemented with an exec method. Since exec uses a shell to execute the command, we can use the shell syntax directly here making use of the shell pipe feature. 
  const {exec} = require('child_process');
  
@@ -11,7 +12,7 @@ Here's our previous example implemented with an exec method. Since exec uses a s
      return;
    }
    
-   console.log(`Number of files :  ${stdout});
+   console.log(`Number of files :  ${stdout}`);
  });
      
 //Exec buffers the output and pass it here in the stdout argument to the callback, which is the output we want to print.
