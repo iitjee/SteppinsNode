@@ -8,7 +8,7 @@ The fact that node runs in a single thread does not mean that we can't take adva
  the workload. This does not cost a lot in term of  development time and it's highly effective. We will focus on the cloning 
  strategy. 
  
- But we can also scale an application by <b> decomposing <b/> it based on functionalities and services. This means having multiple, 
+ But we can also scale an application by <b> decomposing </b> it based on functionalities and services. This means having multiple, 
  different applications with different code bases and sometimes with their own dedicated databases and User Interfaces. 
  This strategy is commonly associated with the term microservice, where micro indicates that those services should be as 
  small as possible, but in reality the size of the service is not what's important, but rather the enforcement of loose 
