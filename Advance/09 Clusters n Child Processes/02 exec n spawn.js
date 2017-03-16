@@ -79,5 +79,23 @@ have access to the parent process env object anymore.
  The last option I want to explain here is the detached option, which makes the child process run independently of its parent process, but the exact behavior depends on the OS.
  
  On Windows, the detached child process will have its own console window, while on Linux the detached child process will be made the leader of a new process group and session.
- .....still there
- If the unref method is called on the detached process, the parent process can exit independently of the child. This can be useful if the child is executing a long running process, but to keep it running in the background the child's stdio configurations also have to be independent of the parent. This example will run a node script in the background by detaching and also ignoring its parent stdio file descriptors, so that the parent can terminate while the child keeps running in the background. When we run this, the parent process will exit, but the timer.js process will continue to run in the background. If you need to execute a file without using a shell, the exec file function is what you need. It behaves exactly like the exec function, but does not use a shell, which makes it a bit more efficient. But behaviors like io direction and file clobbing are not supported when using exec file. On Windows also, some files cannot be executed on their own, like .bat or .cmd files. Those files cannot be executed with exec file, and either exec or spawn with shell set to true is required to execute them. All of the child_process module functions have synchronous blocking versions that will wait until the spawned process exits. This is potentially useful for simplifying scripting tasks or any startup processing tasks, but they are to be avoided otherwise.
+
+.....still there
+ If the unref method is called on the detached process, the parent process can exit independently of the child. This can be 
+ useful if the child is executing a long running process, but to keep it running in the background the child's stdio 
+configurations also have to be independent of the parent. 
+
+        const child = spawn('node', ['timer.js'], {
+          detached: true,
+          stdio: 'ignore'
+        });
+
+This example will run a node script in the background by detaching and also ignoring its parent stdio file descriptors, so 
+that the parent can terminate while the child keeps running in the background. When we run this, the parent process will exit, 
+    but the timer.js process will continue to run in the background. If you need to execute a file without using a shell, the 
+exec file function is what you need. It behaves exactly like the exec function, but does not use a shell, which makes it a bit 
+more efficient. But behaviors like io direction and file clobbing are not supported when using exec file. On Windows also, 
+    some files cannot be executed on their own, like .bat or .cmd files. Those files cannot be executed with exec file, and 
+either exec or spawn with shell set to true is required to execute them. All of the child_process module functions have 
+synchronous blocking versions that will wait until the spawned process exits. This is potentially useful for simplifying 
+scripting tasks or any startup processing tasks, but they are to be avoided otherwise.
