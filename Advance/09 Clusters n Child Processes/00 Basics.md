@@ -1,24 +1,22 @@
 
 The fact that node runs in a single thread does not mean that we can't take advantage of multiple processes, and of course, 
- multiple machines as well. Using multiple processes is the only way to scale a Node.js application. Node.js is designed for 
- building distributed applications with many nodes. This is why it's named Node.js. Scalability is baked into the platform and 
- it's not something you start thinking about later in the lifetime of an application.
+ multiple machines as well. Using multiple processes is the only way to scale a Node.js application. <b> Node.js is designed for building distributed applications with many nodes. This is why it's named Node.js. <b/> Scalability is baked into the platform and  it's not something you start thinking about later in the lifetime of an application.
  
  There are mainly three things we can do to scale an application. 
  
- The easiest thing to do to scale a big application is to clone it multiple times and have each cloned instance handle part of
+ The easiest thing to do to <b> scale a big application <b/> is to clone it multiple times and have each cloned instance handle part of
  the workload. This does not cost a lot in term of  development time and it's highly effective. We will focus on the cloning 
  strategy. 
  
- But we can also scale an application by decomposing it based on functionalities and services. This means having multiple, 
+ But we can also scale an application by <b> decomposing <b/> it based on functionalities and services. This means having multiple, 
  different applications with different code bases and sometimes with their own dedicated databases and User Interfaces. 
  This strategy is commonly associated with the term microservice, where micro indicates that those services should be as 
  small as possible, but in reality the size of the service is not what's important, but rather the enforcement of loose 
  coupling and high cohesion between services. The implementation of this strategy is often not easy and could result in
  long-term unexpected problems, but when done right the advantages are great. 
  
- The third scaling strategy is to split the application into multiple instances where each instance is 
- responsible for only a portion of the application's data. This strategy is often named horizontal partitioning, or sharding, 
+ The third scaling strategy is to <b> split the application into multiple instances where each instance is 
+ responsible for only a portion of the application's data. <b/> . This strategy is often named horizontal partitioning, or sharding, 
  in databases. Data partitioning requires a lookup step before each operation to determine which instance of the application 
  to use. For example, maybe we want to partition our users based on their country or language. We need to do a lookup of that 
  information first. 
