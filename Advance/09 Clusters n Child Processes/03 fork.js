@@ -66,7 +66,7 @@ is busy with the long for loop operation. There are a few ways we can solve this
 operation, but one solution that works for all operations is just to move the computational operation into another process 
 using fork. 
 
-We'll make two files:
+//We'll make two files:
       (server.js)
             const http = require('http');
             const fork = require('child_process');
@@ -104,8 +104,9 @@ We'll make two files:
                   process.send(sum);
             });
 
-
+/*
 this code is, of course, limited by the number of processes we can fork, but when we execute this code now and request the 
 long computation over http, the main server is not blocked at all and can take further requests, and when the computation is 
 done, it's received normally as before. Node's cluster module, which we'll explore next, is based on this idea of child 
 process forking and load balancing the requests among the many forks that we can create on any system.
+*/
