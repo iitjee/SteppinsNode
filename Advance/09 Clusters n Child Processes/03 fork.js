@@ -81,7 +81,7 @@ using fork.
                     compute.send('start'); //When we get a request, we'll send a message to the forked process to start 
                                                 //processing.
                     compute.on('message', sum => {//listen to the message event on the forked process itself,
-                          res.end(`response is ${sum}`)'
+                          res.end(`response is ${sum}`);
               } else {
                 res.end('Ok')
               }
@@ -103,6 +103,9 @@ using fork.
                   const sum = longComputation();
                   process.send(sum);
             });
+
+$node server.js   $curl localhost:3000/compute  $curl localhost
+(open 3 terminals)
 
 /*
 this code is, of course, limited by the number of processes we can fork, but when we execute this code now and request the 
