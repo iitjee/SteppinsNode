@@ -4,7 +4,7 @@ The net module provides you with an asynchronous network wrapper. It contains fu
 (http module vs net module: http://stackoverflow.com/questions/29869999/http-createserver-vs-net-createserver-in-node-js _
 net module creates tcp server where http module creates http server.
  HTTP is on 7th layer of OSI whereas TCP is on 4th layer(Transmission layer). i.e HTTP is built on top of it
-With HTTP server, you can identify whether http headers received are valid or not but you can't do directly with TCP.
+With HTTP server, you can identify whether http headers received are valid or not but you cant do directly with TCP.
 TCP is more like a raw form. On top of it you can make your modules for other protocols like ftp, upd etc.
 This chat server application doesn't need http headers stuff. So we use simple raw TCP protocol :)
 Read the above link for sure!)
@@ -68,8 +68,8 @@ server.on('end', () => {
           sockets[socket.id] = socket;
           
           socket.on('data', data => {
-            Object.entries(sockets).forEach(([, cs]) => {
-              cs.write(`${socket.id} :: ${data}`);
+            Object.entries(sockets).forEach(([, cs]) => {//object.entries is a new method in js, which gives entries(KVP) of the enumerable(Dictionary)
+              cs.write(`${socket.id} :: ${data}`); //on before line, we can also put [key, cs] but we've ignored 'key' as we didn't use it
             }
           });
 
