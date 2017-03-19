@@ -1,6 +1,8 @@
 The net module provides you with an asynchronous network wrapper. It contains functions for creating both servers and clients 
 (called streams).
 
+(http module vs net module: http://stackoverflow.com/questions/29869999/http-createserver-vs-net-createserver-in-node-js _
+
 const server = require('net').createServer(); //creating server
 
 server.on('connection', socket => { //registering a connection handler (cb)
