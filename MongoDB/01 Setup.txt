@@ -1,0 +1,15 @@
+
+
+
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+
+
+cd /data/db
+mongod or sudo mongod 
+
+open new terminal
+$mongo
+(ctrlC or type quit to exit)
+
+
+
