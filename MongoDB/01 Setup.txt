@@ -6,10 +6,18 @@ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 
 cd /data/db
 mongod or sudo mongod 
-
-open new terminal
+(now open new terminal)
 $mongo
 (ctrlC or type quit to exit)
+
+
+>show dbs (lists all dbs)
+ The local database is for internal use by Mongo. If you're going to save any information, you should do it in a different 
+ database. 
+>db (to see which db you are in right now)
+>use myfooDB (to switch to another db)
+
+>help (to see list of commands)
 
 
 
