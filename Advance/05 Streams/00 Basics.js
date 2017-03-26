@@ -10,7 +10,7 @@ A stream is an abstract interface for working with streaming data in Node.js. Th
 it easy to build objects that implement the stream interface.
 Or in other words,
  Streams are simply collections of data, just like arrays or strings, with the difference that they might not be available all 
- at once and they don't have to fit in memory, which makes them really powerful for working with large amounts of data or data 
+ at once and they dont have to fit in memory, which makes them really powerful for working with large amounts of data or data 
  that's coming from an external source one chunk at a time. 
  //create-file.js
       const fs = require("fs");
@@ -25,7 +25,8 @@ Or in other words,
 Runnign above code will create a file of some memoery
 
 
-So now, we'll serve this file in a simple http server using the readFile method and writing the response inside its callback.
+//So now, we'll serve this file in a simple http server using the readFile method and writing the response inside its
+//callback.
       //server.js
       const fs = require("fs");
       const server = require("http").createServer();
