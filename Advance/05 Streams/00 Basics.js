@@ -11,7 +11,7 @@ it easy to build objects that implement the stream interface.
 Or in other words,
  Streams are simply collections of data, just like arrays or strings, with the difference that they might not be available all 
  at once and they dont have to fit in memory, which makes them really powerful for working with large amounts of data or data 
- that's coming from an external source one chunk at a time. 
+ thats coming from an external source one chunk at a time. 
  //create-file.js
       const fs = require("fs");
       const file = fs.createWriteStream('./bigfile');
@@ -46,7 +46,7 @@ $curl -i localhost:8000
 The server's memory usage immediately jump to over 400 MB of memory. That's because our code basically buffered the whole big 
 file in memory before it wrote it out. This is very inefficient.
 
-Luckily, we don't have to do that in Node. The response object is also a writable stream. Remember how we streamed data with 
+Luckily, we dont have to do that in Node. The response object is also a writable stream. Remember how we streamed data with 
 timers when we were talking about the HTTP server? And we used .write and .end on this response object, the same methods we 
 just used to create the big file with the stream. Since this response is a writable stream, if we have the big file as a 
 readable stream, we can simply pipe one into the other and avoid filling up the memory. 
