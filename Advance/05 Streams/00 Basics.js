@@ -1,17 +1,20 @@
-Working with big amounts of data in Node.js means working with streams.  there are a lot of Node packages out there with the sole purpose of making working with streams easier.
+Working with big amounts of data in Node.js means working with streams.  there are a lot of Node packages out there with the 
+sole purpose of making working with streams easier.
 
-Streams, most importantly, give you the power of composability in your code. Just like you can compose powerful Linux commands 
-by piping other smaller commands, you can do exactly the same in Node with Streams. Many of the built-in modules in Node 
-implement the streaming interface. 
+Streams, most importantly, give you the power of composability in your code. Just like you can compose powerful Linux 
+commands by piping other smaller commands, you can do exactly the same in Node with Streams. Many of the built-in modules in 
+ Node implement the streaming interface. 
 
-eg: while an HTTP response is a readable stream on the client, it's a writable stream on the server, because basically one object generates the data and the other object consumes it. Note also how the stdin/out and error streams are the inverse type when it comes to child processes, which we'll talk about next .
+eg: while an HTTP response is a readable stream on the client, it's a writable stream on the server, because basically one 
+object generates the data and the other object consumes it. Note also how the stdin/out and error streams are the inverse 
+type when it comes to child processes, which we'll talk about next .
 
-A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that makes 
-it easy to build objects that implement the stream interface.
+A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that 
+makes it easy to build objects that implement the stream interface.
 Or in other words,
- Streams are simply collections of data, just like arrays or strings, with the difference that they might not be available all 
- at once and they dont have to fit in memory, which makes them really powerful for working with large amounts of data or data 
- thats coming from an external source one chunk at a time. 
+ Streams are simply collections of data, just like arrays or strings, with the difference that they might not be available 
+ all  at once and they dont have to fit in memory, which makes them really powerful for working with large amounts of data 
+ or data thats coming from an external source one chunk at a time. 
  //create-file.js
       const fs = require("fs");
       const file = fs.createWriteStream('./bigfile');
