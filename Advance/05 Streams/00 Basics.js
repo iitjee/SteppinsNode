@@ -7,7 +7,7 @@ commands by piping other smaller commands, you can do exactly the same in Node w
 
 eg: while an HTTP response is a readable stream on the client, it is a writable stream on the server, because basically one 
 object generates the data and the other object consumes it. Note also how the stdin/out and error streams are the inverse 
-type when it comes to child processes, which we'll talk about next .
+type when it comes to child processes, which we will talk about next .
 
 A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that 
 makes it easy to build objects that implement the stream interface.
