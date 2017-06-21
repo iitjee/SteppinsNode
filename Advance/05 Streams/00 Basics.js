@@ -5,7 +5,7 @@ Streams, most importantly, give you the power of composability in your code. Jus
 commands by piping other smaller commands, you can do exactly the same in Node with Streams. Many of the built-in modules in 
  Node implement the streaming interface. 
 
-eg: while an HTTP response is a readable stream on the client, it's a writable stream on the server, because basically one 
+eg: while an HTTP response is a readable stream on the client, it is a writable stream on the server, because basically one 
 object generates the data and the other object consumes it. Note also how the stdin/out and error streams are the inverse 
 type when it comes to child processes, which we'll talk about next .
 
